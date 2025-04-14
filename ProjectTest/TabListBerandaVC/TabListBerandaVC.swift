@@ -24,8 +24,10 @@ class TabListBerandaVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
     }
-    
     func setupView(){
+        searchBar.resignFirstResponder()
+        searchBar.isUserInteractionEnabled = true
+        searchBar.delegate = self
         tableViewListClaim.delegate = self
         tableViewListClaim.dataSource = self
         tableViewListClaim.register(UINib.init(nibName: NibFile.LIST_CLAIM_CELL, bundle: nil), forCellReuseIdentifier: NibFile.LIST_CLAIM_CELL)
@@ -39,20 +41,21 @@ class TabListBerandaVC: UIViewController {
             else { self?.loadingIndicator.stopAnimating() }
         }
         
-        vm.arrListClaim.bind { [weak self] (_) in
-            self?.tableViewListClaim.reloadData()
+        vm.arrListClaim.bind { [unowned self] (_) in
+            self.vm.searchFilterClaim.value = self.vm.arrListClaim.value
+            self.tableViewListClaim.reloadData()
         }
     }
 }
 
 extension TabListBerandaVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        vm.arrListClaim.value.count
+        vm.searchFilterClaim.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NibFile.LIST_CLAIM_CELL, for: indexPath) as! ListClaimCell
-        let data = vm.arrListClaim.value[indexPath.row]
+        let data = vm.searchFilterClaim.value[indexPath.row]
         cell.setupCell(data: data)
         return cell
     }
@@ -63,8 +66,22 @@ extension TabListBerandaVC: UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DetailListClaimVC(nibName: NibFile.DETAIL_CLAIM, bundle: nil)
-        vc.vm.title = vm.arrListClaim.value[indexPath.row].ClaimTitle
-        vc.vm.desc = vm.arrListClaim.value[indexPath.row].ClaimDescription
+        vc.vm.title = vm.searchFilterClaim.value[indexPath.row].ClaimTitle
+        vc.vm.desc = vm.searchFilterClaim.value[indexPath.row].ClaimDescription
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension TabListBerandaVC: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            vm.searchFilterClaim.value = vm.arrListClaim.value
+        } else {
+            vm.searchFilterClaim.value = vm.arrListClaim.value.filter {
+                // Case insensitive logic search
+                $0.ClaimTitle.lowercased().contains(searchText.lowercased())
+            }
+            tableViewListClaim.reloadData()
+        }
     }
 }
