@@ -34,17 +34,45 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7WX-zI-cGs">
+                    <rect key="frame" x="0.0" y="59" width="393" height="56"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukK-4U-8wl">
+                            <rect key="frame" x="20" y="13.666666666666671" width="72.666666666666671" height="29"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="ukK-4U-8wl" firstAttribute="centerY" secondItem="7WX-zI-cGs" secondAttribute="centerY" id="4cs-nV-tFu"/>
+                        <constraint firstAttribute="height" constant="56" id="Npj-g6-ll0"/>
+                        <constraint firstItem="ukK-4U-8wl" firstAttribute="leading" secondItem="7WX-zI-cGs" secondAttribute="leading" constant="20" symbolic="YES" id="PHj-g5-R6g"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBound" value="NO"/>
+                        <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                            <size key="value" width="0.0" height="2"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                            <real key="value" value="0.10000000000000001"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="QUN-OI-SFK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="Ikj-fh-Zwx"/>
+                <constraint firstItem="QUN-OI-SFK" firstAttribute="top" secondItem="7WX-zI-cGs" secondAttribute="bottom" constant="44" id="6hH-mg-m3l"/>
+                <constraint firstItem="7WX-zI-cGs" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Cp4-zH-UzN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="HEu-4g-UUR" secondAttribute="trailing" constant="10" id="SPt-4U-pUp"/>
+                <constraint firstItem="7WX-zI-cGs" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="UOw-XF-fc2"/>
                 <constraint firstItem="HEu-4g-UUR" firstAttribute="top" secondItem="QUN-OI-SFK" secondAttribute="bottom" constant="20" id="ZcW-aT-Hge"/>
+                <constraint firstItem="7WX-zI-cGs" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="k72-MR-ths"/>
                 <constraint firstItem="HEu-4g-UUR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="l3n-Oz-F78"/>
                 <constraint firstItem="QUN-OI-SFK" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="w3E-9o-b3r"/>
             </constraints>
-            <point key="canvasLocation" x="92" y="20"/>
+            <point key="canvasLocation" x="90.839694656488547" y="19.718309859154932"/>
         </view>
     </objects>
     <resources>
