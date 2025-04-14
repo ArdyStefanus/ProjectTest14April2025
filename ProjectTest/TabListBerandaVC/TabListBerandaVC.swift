@@ -61,9 +61,10 @@ extension TabListBerandaVC: UITableViewDataSource, UITableViewDelegate{
         return 128
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let vc = DetailGimVC(nibName: NibFile.DETAIL_LIST_GIM, bundle: nil)
-//        vc.vm.idListGame = vm.arrListClaim.value[indexPath.row].id
-//        navigationController?.pushViewController(vc, animated: true)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = DetailListClaimVC(nibName: NibFile.DETAIL_CLAIM, bundle: nil)
+        vc.vm.title = vm.arrListClaim.value[indexPath.row].ClaimTitle
+        vc.vm.desc = vm.arrListClaim.value[indexPath.row].ClaimDescription
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
